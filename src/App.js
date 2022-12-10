@@ -1,8 +1,10 @@
 import "./App.css";
+import Alert from "./components/Alert";
 import Artworks from "./components/Artworks";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
+import Loading from "./components/Loading";
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
       </div>
       <Artworks />
       <Footer/>
+      <Alert/>
+      <Loading/>
     </div>
   );
 }
