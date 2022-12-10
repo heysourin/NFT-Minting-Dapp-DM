@@ -1,6 +1,7 @@
 import React from 'react'
 import avatar from '../assets/owner.jpg'
 import { SocialIcon } from 'react-social-icons'
+// import Artworks from './Artworks'
 
 const Hero = () => {
   return (
@@ -78,6 +79,7 @@ const Hero = () => {
         </div>
       </div>
     </div>
+
   )
 }
 
