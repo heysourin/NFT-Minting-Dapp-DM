@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract MyToken is ERC721Enumerable, Ownable {
-    using Strings for uint256; //Converting uin to string
+    using Strings for uint256; //Converting uint to string
 
     string baseURI;
     string public baseImage = ".webp";
@@ -40,8 +40,10 @@ contract MyToken is ERC721Enumerable, Ownable {
         setBaseURI(_initBaseURI);
     }
 
+    //This function will allow user to mint a token on exchange of some ethers
+    
     function payToMint() public payable {
-        uint supply = totalSupply();//total available supply
+        uint supply = totalSupply(); //total available supply
         require(!paused, "On Pause, NFT Under Maintenance");
         require(supply <= maxSupply, "Sorry, all NFTs have been minted");
         require(msg.value > 0 ether, "Too low");
@@ -62,9 +64,16 @@ contract MyToken is ERC721Enumerable, Ownable {
             )
         );
 
-        emit Sale(supply, msg.sender, msg.value, tokenURI(supply + 1), block.timestamp);
+        emit Sale(
+            supply,
+            msg.sender,
+            msg.value,
+            tokenURI(supply + 1),
+            block.timestamp
+        );
     }
 
+    //This function takes a token ID as input and checks that the token exists before returning its URI.
     function tokenURI(
         uint tokenId
     ) public view virtual override returns (string memory) {
@@ -86,6 +95,7 @@ contract MyToken is ERC721Enumerable, Ownable {
                 : "";
     }
 
+    //This function takes a token ID as input and uses the token's base URI and ID to construct the image URL.
     function toImage(uint tokenId) internal view returns (string memory) {
         string memory currentBaseURI = _baseURI();
         return
@@ -109,11 +119,13 @@ contract MyToken is ERC721Enumerable, Ownable {
     }
 
     function payTo(address to, uint amount) public onlyOwner {
+        //This function allows token owner to send ether to a specific address
         (bool success1, ) = payable(to).call{value: amount}("");
         require(success1);
     }
 
     function setBaseURI(string memory _newBAseURI) public onlyOwner {
+        //This function allows user to set baseURI
         baseURI = _newBAseURI;
     }
 
@@ -121,12 +133,7 @@ contract MyToken is ERC721Enumerable, Ownable {
         paused = _state;
     }
 
-    function _basaeURI()
-        internal
-        view
-        virtual
-        returns (string memory)
-    {
+    function _basaeURI() internal view virtual returns (string memory) {
         return baseURI;
     }
 }
