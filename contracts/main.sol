@@ -41,7 +41,7 @@ contract MyToken is ERC721Enumerable, Ownable {
     }
 
     //This function will allow user to mint a token on exchange of some ethers
-    
+
     function payToMint() public payable {
         uint supply = totalSupply(); //total available supply
         require(!paused, "On Pause, NFT Under Maintenance");
@@ -65,7 +65,7 @@ contract MyToken is ERC721Enumerable, Ownable {
         );
 
         emit Sale(
-            supply,
+            supply+1,
             msg.sender,
             msg.value,
             tokenURI(supply + 1),
@@ -95,7 +95,7 @@ contract MyToken is ERC721Enumerable, Ownable {
                 : "";
     }
 
-    //This function takes a token ID as input and uses the token's base URI and ID to construct the image URL.
+    //This function takes a token ID as input and uses the token's base URI and ID to construct the image URL. Basically it convers tokenId to image.
     function toImage(uint tokenId) internal view returns (string memory) {
         string memory currentBaseURI = _baseURI();
         return
@@ -124,6 +124,7 @@ contract MyToken is ERC721Enumerable, Ownable {
         require(success1);
     }
 
+//This can be used to change/update your image address location on the internet
     function setBaseURI(string memory _newBAseURI) public onlyOwner {
         //This function allows user to set baseURI
         baseURI = _newBAseURI;
