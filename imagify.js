@@ -105,4 +105,3 @@ fs.readdirSync(input).forEach((file) => {
 
 //  Inside packages: under scripts:  "process": "node imagify.js"
 //On terminal: `npm run process`
-//
