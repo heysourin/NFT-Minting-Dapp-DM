@@ -86,6 +86,17 @@ fs.readdirSync(input).forEach((file) => {
         {
           trait_type: "Rarity",
           value: attributes.environment.sort(() => 0.5 - Math.random())[0],
+          max_value: 10,
+        },
+        {
+          display_type: "date",
+          trait_type: "Created",
+          value: Date.now(),
+        },
+        {
+          display_type: "number",
+          trait_type: "generation",
+          value: 1,
         },
       ],
     };
