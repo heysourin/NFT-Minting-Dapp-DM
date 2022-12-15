@@ -7,7 +7,7 @@ const output = "./outputs";
 
 let imgCounter = 1;
 const imgSize = { width: 500, height: 500 };
-const desired_ext = ".png";
+const desired_ext = ".webp";
 const baseURI = "https://ipfs.io/ipfs/IPFS_CID_URL"; //? ****
 const attributes = {
   weapon: [
@@ -32,25 +32,25 @@ const attributes = {
   ],
   environment: [
     "Transparent",
-    "Transparent",
-    "Transparent",
-    "Transparent",
-    "Transparent",
-    "Transparent",
-    "Transparent",
-    "Transparent",
-    "Transparent",
-    "Transparent",
-    "Transparent",
-    "Transparent",
-    "Transparent",
-    "Transparent",
-    "Transparent",
-    "Transparent",
-    "Transparent",
-    "Transparent",
-    "Transparent",
-    "Transparent",
+    "Transparent2",
+    "Transparent3",
+    "Transparent4",
+    "Transparent5",
+    "Transparent6",
+    "Transparent7",
+    "Transparent8",
+    "Transparent9",
+    "Transparent10",
+    "Transparent11",
+    "Transparent12",
+    "Transparent13",
+    "Transparent14",
+    "Transparent15",
+    "Transparent16",
+    "Transparent17",
+    "Transparent18",
+    "Transparent19",
+    "Transparent20",
   ],
   rarity: Array.from(Array(20).keys()),
 };
@@ -70,9 +70,10 @@ fs.readdirSync(input).forEach((file) => {
 
     const metadata = {
       id,
-      name: "Max NFT #${id}",
+      name: `Max NFT #${id}`,
       description: "3D Arts NFT Collection",
       price: 0.0001,
+      image: baseURI + id + desired_ext,
       demand: faker.random.numeric({ min: 10, max: 100 }),
       attributes: [
         {
@@ -100,6 +101,20 @@ fs.readdirSync(input).forEach((file) => {
         },
       ],
     };
+
+    if (fs.existsSync(`${input}/${originalFileName + originalExtension}`)) {
+      sharp(`${input}/${originalFileName + originalExtension}`)
+        .resize(imgSize.height, imgSize.width)
+        .toFile(`${output}/${id + desired_ext}`),
+        (err, info) => console.log(err);
+
+      fs.writeFileSync(`${output}/metadata/${id}.json`, JSON.stringify(metadata), {
+        encoding: "utf-8",
+        flag: "w",
+      });
+    }
+    console.log(metadata);
+    imgCounter++;
   }
 });
 
