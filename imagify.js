@@ -108,10 +108,14 @@ fs.readdirSync(input).forEach((file) => {
         .toFile(`${output}/${id + desired_ext}`),
         (err, info) => console.log(err);
 
-      fs.writeFileSync(`${output}/metadata/${id}.json`, JSON.stringify(metadata), {
-        encoding: "utf-8",
-        flag: "w",
-      });
+      fs.writeFileSync(
+        `${output}/metadata/${id}.json`,
+        JSON.stringify(metadata),
+        {
+          encoding: "utf-8",
+          flag: "w",
+        }
+      );
     }
     console.log(metadata);
     imgCounter++;
