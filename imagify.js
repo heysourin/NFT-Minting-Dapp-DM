@@ -7,8 +7,8 @@ const output = "./outputs";
 
 let imgCounter = 1;
 const imgSize = { width: 500, height: 500 };
-const desired_ext = ".webp";
-const baseURI = "https://ipfs.io/ipfs/IPFS_CID_URL"; //? ****
+const desiredExt = ".webp";
+const baseURI = "https://ipfs.io/ipfs/QmPFHdiiheQwe3mw2FmcSjERZbMhfadRjVyqNnmDy7ZfFM"; //? ****
 const attributes = {
   weapon: [
     "Tree",
@@ -73,7 +73,7 @@ fs.readdirSync(input).forEach((file) => {
       name: `Max NFT #${id}`,
       description: "3D Arts NFT Collection",
       price: 0.0001,
-      image: baseURI + id + desired_ext,
+      image: baseURI + id + desiredExt,
       demand: faker.random.numeric({ min: 10, max: 100 }),
       attributes: [
         {
@@ -105,14 +105,20 @@ fs.readdirSync(input).forEach((file) => {
     if (fs.existsSync(`${input}/${originalFileName + originalExtension}`)) {
       sharp(`${input}/${originalFileName + originalExtension}`)
         .resize(imgSize.height, imgSize.width)
-        .toFile(`${output}/${id + desired_ext}`),
+        .toFile(`${output}/images/${id + desiredExt}`),
         (err, info) => console.log(err);
 
-      fs.writeFileSync(`${output}/metadata/${id}.json`, JSON.stringify(metadata), {
-        encoding: "utf-8",
-        flag: "w",
-      });
+      //Generating metadata:
+      fs.writeFileSync(
+        `${output}/metadata/${id}.json`,
+        JSON.stringify(metadata),
+        {
+          encoding: "utf-8",
+          flag: "w",
+        }
+      );
     }
+
     console.log(metadata);
     imgCounter++;
   }
