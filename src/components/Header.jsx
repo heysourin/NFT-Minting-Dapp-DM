@@ -1,7 +1,9 @@
 import React from 'react'
 import ethlogo from '../assets/ethlogo.png'
+import { connectWallet } from '../contract'
 
 const Header = () => {
+
   return (
     <nav className='w-full flex md:justify-center justify-between items-center py-4 mx-auto bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-10'>
         <div className='flex flex-row justify-start items-center md:flex-[0.5] flex-initial'>
@@ -15,7 +17,8 @@ const Header = () => {
           <li className='mx-4 cursor-pointer '>Community </li>
         </ul>
 
-        <button className='bg-purple-600 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded-full shadow-lg shadow-gray-100/50'> Connect Wallet </button>
+        <button className='bg-purple-600 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded-full shadow-lg shadow-gray-100/50'
+        onClick={connectWallet}> Connect Wallet </button>
     </nav>
   )
 }
