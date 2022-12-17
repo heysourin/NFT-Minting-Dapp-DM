@@ -1,9 +1,22 @@
 import React from 'react'
 import avatar from '../assets/owner.jpg'
 import { SocialIcon } from 'react-social-icons'
+import { setAlert, setGlobalState, setLoadingMsg, useGlobalState } from '../store'
+import contract, { payToMint } from '../contract'
 // import Artworks from './Artworks'
 
 const Hero = () => {
+  const [nfts] = useGlobalState('nfts')
+  const onMintNFT = async () => {
+    setGlobalState('loading', {
+      show: true,
+      msg: 'Minting new NFT to your account',
+    })
+
+    await payToMint()
+      .then(() => setAlert('Minting successful...', 'green'))
+      .catch(() => setGlobalState('loading', { show: false, msg: '' }))
+  }
   return (
     <div
       className="bg-[url('https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80')]
@@ -11,17 +24,18 @@ const Hero = () => {
     >
       <div className="flex flex-col justify-center items-center mx-auto py-10">
         <h1 className="text-white text-5xl font-bold text-center">
-          A.I Arts <br />
+          3D Arts <br />
           <span>NFTs </span>Collection
         </h1>
 
         <p className="text-white font-semibold text-sm">
-          Mint & COllect The Hottest NFTs Around
+          Mint & Collect The Hottest NFTs Around
         </p>
 
         <button
           type="button"
           className="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 my-3"
+          onClick={onMintNFT}
         >
           Mint NFT
         </button>
@@ -41,8 +55,7 @@ const Hero = () => {
           </div>
         </a>
 
-
-{/* Social Medias  */}
+        {/* Social Medias  */}
         <ul className="flex flex-row justify-center space-x-0.5 items-center">
           {/* <div className="flex items-center space-x-6 lg:space-x-5"> */}
           <SocialIcon
@@ -72,14 +85,12 @@ const Hero = () => {
           />
         </ul>
 
-
- {/* NFT Count  */}
+        {/* NFT Count  */}
         <div className="shadow-xl shadow-black flex justify-center items-center w-10 h-10 rounded-full bg-white cursor-pointer p-3 m-4 text-black hover:bg-[#000] hover:text-white transaction-all duration-75 delay-100 ">
-          <span className='text-md font-bold'>99</span>
+          <span className="text-md font-bold">20</span>
         </div>
       </div>
     </div>
-
   )
 }
 

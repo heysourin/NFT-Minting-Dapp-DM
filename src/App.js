@@ -1,4 +1,3 @@
-import "./App.css";
 import { useEffect } from "react";
 import Alert from "./components/Alert";
 import Artworks from "./components/Artworks";

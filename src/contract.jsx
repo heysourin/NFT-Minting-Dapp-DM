@@ -84,6 +84,7 @@ const loadNfts = async () => {
     const contract = getEthereumContract()
     const nfts = await contract.getAllNFTs()
 
+    console.log(structureNfts(nfts))
     setGlobalState('nfts', structureNfts(nfts))
   } catch (err) {
     reportError(err)

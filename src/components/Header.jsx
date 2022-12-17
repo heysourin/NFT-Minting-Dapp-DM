@@ -1,4 +1,4 @@
-import React from 'react'
+import { React } from 'react'
 import ethlogo from '../assets/ethlogo.png'
 import { connectWallet } from '../contract'
 import { truncate, useGlobalState } from '../store'
@@ -19,7 +19,7 @@ const Header = () => {
       </ul>
       {connectedAccount ? (
         <button className="bg-purple-600 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded-full shadow-lg shadow-gray-100/50">
-          {truncate(connectedAccount,4,4,11)}
+          {truncate(connectedAccount, 4, 4, 11)}
         </button>
       ) : (
         <button
