@@ -1,9 +1,7 @@
 import {React,  useState, useEffect } from 'react'
-// import NFTCard from './NFTCard'
 import ethlogo2 from '../assets/ethlogo2.png'
 
 const Artworks = ({ artworks }) => {
-  // const BASE_URI = `https://images.cointelegraph.com/images/1434_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjEtMDYvNGE4NmNmOWQtODM2Mi00YmVhLThiMzctZDEyODAxNjUxZTE1LmpwZWc=.jpg`
   const [count] = useState(1)
   const [end, setEnd] = useState(1)
   const [nfts, setNfts] = useState([])

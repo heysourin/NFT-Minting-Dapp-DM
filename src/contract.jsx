@@ -91,7 +91,12 @@ const loadNfts = async () => {
   }
 }
 
-const structureNfts = (nfts) => {
+const reportError = (error) => {
+  console.log(error.message)
+  throw new Error('No Ethereum Object Found')
+}
+
+const structureNfts = (nfts) =>
   nfts
     .map((nft) => ({
       id: Number(nft.id),
@@ -102,11 +107,5 @@ const structureNfts = (nfts) => {
       timestamp: new Date(nft.timestamp.toNumber()).getTime(),
     }))
     .reverse()
-}
-
-const reportError = (error) => {
-  console.log(error.message)
-  throw new Error('No Ethereum Object Found')
-}
 
 export { isWalletConnected, connectWallet, payToMint, loadNfts }
