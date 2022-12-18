@@ -6,7 +6,7 @@ const contractAddress = '0x3535b0E097D93475249D9CaeeFAFF077377dAD72'
 
 const { ethereum } = window
 const contractAbi = contract.abi
-const opensearURI = ''
+const openseaURL = `https://testnets.opensea.io/assets/goerli/${contractAddress}/`
 
 const getEthereumContract = () => {
   const connectedAccount = getGlobalState('connectedAccount')
@@ -84,8 +84,8 @@ const loadNfts = async () => {
     const contract = getEthereumContract()
     const nfts = await contract.getAllNFTs()
 
-    console.log(structureNfts(nfts))
     setGlobalState('nfts', structureNfts(nfts))
+    console.log(structureNfts(nfts))
   } catch (err) {
     reportError(err)
   }
@@ -100,7 +100,7 @@ const structureNfts = (nfts) =>
   nfts
     .map((nft) => ({
       id: Number(nft.id),
-      url: opensearURI + nft.id,
+      url: openseaURL + nft.id,
       buyer: nft.buyer,
       imageURL: nft.imageURL,
       cost: parseInt(nft.cost._hex) / 10 ** 18,
