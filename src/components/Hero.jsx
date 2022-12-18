@@ -87,7 +87,7 @@ const Hero = () => {
 
         {/* NFT Count  */}
         <div className="shadow-xl shadow-black flex justify-center items-center w-10 h-10 rounded-full bg-white cursor-pointer p-3 m-4 text-black hover:bg-[#000] hover:text-white transaction-all duration-75 delay-100 ">
-          <span className="text-md font-bold">20</span>
+          <span className="text-md font-bold">{nfts.length}/20</span>
         </div>
       </div>
     </div>
