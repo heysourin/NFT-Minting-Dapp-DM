@@ -2,7 +2,7 @@ import contract from './abis/contracts/main.sol/MyToken.json'
 import { getGlobalState, setGlobalState } from './store/index'
 import { ethers } from 'ethers'
 
-const contractAddress = '0x3535b0E097D93475249D9CaeeFAFF077377dAD72'
+const contractAddress = '0xd62cac41c234415f6bFFF9e39a2623997F33dbB1'
 
 const { ethereum } = window
 const contractAbi = contract.abi
@@ -27,11 +27,11 @@ const isWalletConnected = async () => {
     const accounts = await ethereum.request({ method: 'eth_accounts' })
 
     //On change on networks on your metamsk wallet
-    window.ethereum.on('chainChanges', (chainID) => {
+    window.ethereum.on('chainChanged', (chainID) => {
       window.location.reload()
     })
     //After changing the network, the connection:
-    window.ethereum.on('chainChanges', async () => {
+    window.ethereum.on('chainChanged', async () => {
       setGlobalState('connectedAccount', accounts[0])
       await isWalletConnected()
     })

@@ -3,8 +3,7 @@ const fs = require("fs");
 const hre = require("hardhat");
 
 async function main() {
-  const baseURI =
-    "https://ipfs.io/ipfs/QmPFHdiiheQwe3mw2FmcSjERZbMhfadRjVyqNnmDy7ZfFM";
+  const baseURI ="https://ipfs.io/ipfs/QmRbe5UJNkh8Ma7uBeTS3EgKSJ1KTMUhc6UaHQVkgSDU92/";
 
   const Contract = await hre.ethers.getContractFactory("MyToken");
   const contract = await Contract.deploy("3D NFT Arts", "3DNFT", baseURI);
