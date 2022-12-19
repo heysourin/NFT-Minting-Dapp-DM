@@ -73,7 +73,7 @@ fs.readdirSync(input).forEach((file) => {
       name: `Max NFT #${id}`,
       description: "3D Arts NFT Collection",
       price: 0.0001,
-      image: baseURI + id + desiredExt,
+      image: baseURI +"/"+ id + desiredExt,
       demand: faker.random.numeric({ min: 10, max: 100 }),
       attributes: [
         {

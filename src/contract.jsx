@@ -2,7 +2,10 @@ import contract from './abis/contracts/main.sol/MyToken.json'
 import { getGlobalState, setGlobalState } from './store/index'
 import { ethers } from 'ethers'
 
-const contractAddress = '0xd62cac41c234415f6bFFF9e39a2623997F33dbB1'
+// const contractAddress = '0xd62cac41c234415f6bFFF9e39a2623997F33dbB1'
+// const contractAddress = '0x4DEB81C283BB8B3578493709E088a27459b0BA2d'
+// const contractAddress = '0xe9e4983e477c345ccE44CCa586d4bAF274C2b076'
+const contractAddress = '0x9357b44ad96e328a7c7D6C4D4656Ead4DE39893a'
 
 const { ethereum } = window
 const contractAbi = contract.abi
